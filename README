@@ -1,0 +1,9 @@
+A JSON-RPC class, written in PHP5.
+
+It provides a simple means to process JSON-RPC 2.0 requests objects.
+It should be paired with additional transport extension classes, an example http server class is included.
+
+Presently it only reflects functions shared in the global space, support for singleton or more involved class invocations could be added.
+
+Still a work in progress. Suggestions welcome :)
+

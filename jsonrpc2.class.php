@@ -234,7 +234,7 @@ class jsonrpc2 {
 		// if not an object, check if it is an associative array
 		if(!$is_obj){
 			// check if the param list is an array
-			$is_assoc = array_keys ( $sent ) != range ( 0, count ( $sent ) - 1 );
+			$is_assoc = array_keys ( $sent ) !== range ( 0, count ( $sent ) - 1 );
 		}
 
 		// create the param list we are going to use to invoke the object

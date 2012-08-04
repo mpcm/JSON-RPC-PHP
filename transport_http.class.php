@@ -1,16 +1,16 @@
 <?php
 class transport_http extends jsonrpc2{
 	
-	// keys we check for non-parameterized call
+    // keys we check for non-parameterized call
     public $keys = array('jsonrpc');
 
     public function process(){
         try{
 
-        	// try to extract the values from matching keys in the $_REQUEST
-        	$request = $this->resolve_from_keys();
+            // try to extract the values from matching keys in the $_REQUEST
+            $request = $this->resolve_from_keys();
         	
-        	// next, try a blob search
+            // next, try a blob search
             if( !isset($request) || $request === FALSE){
             	$request = $this->resolve_from_blob();
             }
@@ -35,10 +35,10 @@ class transport_http extends jsonrpc2{
     
     private function resolve_from_keys(){
     	
-        if(isset($_REQUEST['method'])){
+        if( isset( $_REQUEST['method'] ) ){
             $request = (object) array('method'=>null,'params'=>array(),'id'=>null,'jsonrpc'=>'2.0');
-            foreach($request as $k=>$v){
-                if(isset($_REQUEST[$k])){                	
+            foreach( $request as $k=>$v){
+                if( isset( $_REQUEST[$k] ) ){                	
                     $i = json_decode( $_REQUEST[$k], TRUE );
                     $request->$k = ( $i ) ? $i : $_REQUEST[$k];
                 }
@@ -69,8 +69,8 @@ class transport_http extends jsonrpc2{
     private function map_into($i){
         $r = array('method'=>null,'params'=>array(),'id'=>null,'jsonrpc'=>'2.0');
         foreach($r as $k=>$v){
-            if( isset($i[$k]) ){
-				$r[$k] = $i[$k];
+            if( isset( $i[$k] ) ){
+	       $r[$k] = $i[$k];
             }    
         }
         return (object) $r;

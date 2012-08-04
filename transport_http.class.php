@@ -60,7 +60,7 @@ class transport_http extends jsonrpc2{
     	if( is_array($request) || is_object($request) ) return $request;
     	
     	// if not, attempt other methods
-        if( !is_array($request) && !is_object($request) ) $request = json_decode( rawurldecode( $_SERVER['QUERY_STRING'] ), TRUE );
+        if( !is_array($request) && !is_object($request) && isset( $_SERVER['QUERY_STRING'] ) ) $request = json_decode( rawurldecode( $_SERVER['QUERY_STRING'] ), TRUE );
         if( !is_array($request) && !is_object($request) ) $request = json_decode( file_get_contents( 'php://input' ), TRUE );        
         if( !is_array($request) && !is_object($request) ) throw new Exception(-32700);
         return $request;
